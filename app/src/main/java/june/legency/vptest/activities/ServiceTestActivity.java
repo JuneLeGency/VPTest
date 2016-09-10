@@ -3,6 +3,7 @@ package june.legency.vptest.activities;
 import android.content.Context;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import android.view.View;
 
 import com.apkfuns.logutils.LogUtils;
 
+import java.util.List;
+
+import io.paperdb.Paper;
 import june.legency.vptest.R;
 
 public class ServiceTestActivity extends AppCompatActivity {
@@ -26,12 +30,18 @@ public class ServiceTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_test);
         initService();
+        Paper.init(this);
+        List<ScanResult> s = wifiManager.getScanResults();
+        LogUtils.d(s);
+        Paper.book("new").write("hello", s);
+        s = Paper.book("new").read("hello");
+        LogUtils.d(s);
     }
 
     //        // connectivity interceptor
 //        interceptorHooks.add(new Interceptor_GetActiveNetworkInfo());
 
-//        //location interceptor
+    //        //location interceptor
 //        interceptorHooks.add(new Interceptor_RemoveUpdates());
 //        interceptorHooks.add(new Interceptor_RequestLocationUpdates());
 //

@@ -38,4 +38,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile files('libs/AMap_Location_V2.9.0_20160906.jar')
     compile 'com.apkfuns.logutils:library:1.4.2'
+    compile 'io.paperdb:paperdb:1.5'
 }
